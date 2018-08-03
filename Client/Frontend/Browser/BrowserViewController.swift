@@ -1421,8 +1421,14 @@ extension BrowserViewController: URLBarDelegate {
     func urlBarDidTapBraveShieldsButton(_ urlBar: URLBarView) {
         // BRAVE TODO: Insert shield block stats here
         let shields = ShieldsViewController(url: tabManager.selectedTab?.url, shieldBlockStats: nil)
-        shields.preferredContentSize = CGSize(width: 320, height: 600.0)
+        shields.preferredContentSize = CGSize(width: 400, height: 600.0)
         let popover = PopoverController(contentController: shields, contentSizeBehavior: .preferredContentSize)
+        if UIDevice.current.orientation.isPortrait {
+            // Leave some space near the bottom for easier dismissal
+            var margins = popover.outerMargins
+            margins.bottom = 80.0
+            popover.outerMargins = margins
+        }
         popover.present(from: urlBar.locationView.shieldsButton, on: self)
     }
 }

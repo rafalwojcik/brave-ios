@@ -316,18 +316,10 @@ extension PopoverController: BasicAnimationControllerDelegate {
         
         contentController.view.frame = CGRect(origin: .zero, size: popoverContext.presentedSize)
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            NSLayoutConstraint.activate([
-                containerView.leftAnchor.constraint(greaterThanOrEqualTo: viewController.view.leftAnchor, constant: outerMargins.left),
-                containerView.rightAnchor.constraint(lessThanOrEqualTo: viewController.view.rightAnchor, constant: -outerMargins.right)
-            ])
-        } else {
-            // iPhone variant will always be full-width
-            NSLayoutConstraint.activate([
-                containerView.leftAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.leftAnchor, constant: outerMargins.left),
-                containerView.rightAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.rightAnchor, constant: -outerMargins.right)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            containerView.leftAnchor.constraint(greaterThanOrEqualTo: viewController.view.leftAnchor, constant: outerMargins.left),
+            containerView.rightAnchor.constraint(lessThanOrEqualTo: viewController.view.rightAnchor, constant: -outerMargins.right)
+        ])
         
         let centerX = containerView.centerXAnchor.constraint(equalTo: popoverContext.originView.centerXAnchor)
         centerX.priority = .defaultHigh

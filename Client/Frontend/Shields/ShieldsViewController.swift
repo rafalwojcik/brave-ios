@@ -229,11 +229,16 @@ extension ShieldsViewController {
             
             scrollView.snp.makeConstraints {
                 $0.edges.equalTo(self)
+//                $0.width.equalTo(self)
+            }
+            
+            scrollView.contentLayoutGuide.snp.makeConstraints {
+                $0.width.equalTo(self)
             }
             
             stackView.snp.makeConstraints {
-                $0.left.right.equalTo(scrollView.frameLayoutGuide).inset(20.0)
-                $0.top.bottom.equalTo(scrollView.contentLayoutGuide).inset(20.0)
+                $0.edges.equalTo(scrollView.contentLayoutGuide).inset(20.0)
+//                $0.top.bottom.equalTo(scrollView.contentLayoutGuide).inset(20.0)
             }
             
             stackView.addArrangedSubview(shieldOverrideControl)
@@ -292,6 +297,8 @@ extension ShieldsViewController {
             
             addSubview(valueLabel)
             addSubview(titleLabel)
+            
+            titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
             
             valueLabel.snp.makeConstraints {
                 $0.width.equalTo(50.0)
@@ -354,7 +361,8 @@ extension ShieldsViewController {
             toggleSwitch.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
             
             toggleSwitch.setContentHuggingPriority(.required, for: .horizontal)
-            titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+            toggleSwitch.setContentCompressionResistancePriority(.required, for: .horizontal)
+//            titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
             titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             
             snp.makeConstraints {
